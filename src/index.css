@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400;1,9..40,500&display=swap');
 
 :root {
   --bg:           #ffffff;
@@ -6,8 +6,8 @@
   --text:         #1c1917;
   --text-muted:   #44403c;
   --text-light:   #a8a29e;
-  --accent:       #3d1a78;
-  --accent-soft:  #ede8f8;
+  --accent:       #9350b2;
+  --accent-soft:  rgba(207, 166, 241, 0.14);
   --border:       #e8e3dc;
   --border-dark:  #1c1917;
 
