@@ -84,8 +84,8 @@
 }
 
 .nav--scrolled .nav__links a { color: var(--text-muted); }
-.nav__links a:hover { opacity: 0.65; }
-.nav--scrolled .nav__links a:hover { color: var(--accent); opacity: 1; }
+.nav__links a:hover { opacity: 0.65; text-decoration: underline; }
+.nav--scrolled .nav__links a:hover { color: var(--accent); opacity: 1; text-decoration: underline; }
 
 .nav__resume {
   display: inline-flex;
@@ -95,7 +95,6 @@
 
 .nav__arrow {
   display: inline-block;
-  transform: rotate(-45deg);
   font-size: 18px;
   line-height: 1;
 }
@@ -122,16 +121,10 @@
   height: 100%;
   max-width: none;
   object-fit: cover;
-  object-position: top center;
+  object-position: bottom center;
   display: block;
 }
 
-.hero__bg-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(207, 166, 241, 0.14);
-  pointer-events: none;
-}
 
 .hero__stars {
   position: absolute;
@@ -342,6 +335,12 @@
   color: var(--text);
   background: var(--accent-soft);
   white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.card__tag-pill:hover {
+  background: #e0c4f5;
+  color: #5a2d82;
 }
 
 .card__cta {
@@ -384,21 +383,14 @@
   object-fit: cover;
   object-position: top center;
   display: block;
-  opacity: 0.88;
 }
 
-.footer__bg-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(207, 166, 241, 0.20);
-  pointer-events: none;
-}
 
 .footer__inner {
   position: relative;
   z-index: 2;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 48px;
 }
@@ -454,11 +446,11 @@
 .footer__col-link:hover {
   color: #ffffff;
   opacity: 1;
+  text-decoration: underline;
 }
 
 .footer__col-link .link-arrow {
   display: inline-block;
-  transform: rotate(-45deg);
   font-size: 20px;
   line-height: 1;
 }

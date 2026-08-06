@@ -280,8 +280,6 @@ function Home() {
       {/* ── Hero ── */}
       <section className="hero">
         <img src="/hero-bg.png" alt="" className="hero__bg-img" />
-        <div className="hero__bg-overlay" />
-        <HeroStars />
         <div className="container hero__inner">
           <div className="hero__text">
             <h1 className="hero__title">Hello, I&apos;m Manjusri!</h1>
@@ -312,7 +310,6 @@ function Home() {
       {/* ── Footer ── */}
       <footer className="footer">
         <img src="/footer-bg.png" alt="" className="footer__bg-img" />
-        <div className="footer__bg-overlay" />
         <div className="container footer__inner">
           <div className="footer__left">
             <p className="footer__tagline">Thanks for stopping by!</p>
