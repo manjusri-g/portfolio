@@ -71,7 +71,7 @@ export default function Tesla() {
       coverAlt="Tesla Model S homepage"
       meta={[
         { key: 'Timeline', val: 'TBD' },
-        { key: 'Role', val: 'Product Designer' },
+        { key: 'Role', val: 'Program Designer' },
         { key: 'Client', val: 'Tesla' },
         { key: 'Tools', val: 'Figma' },
         { key: 'Disciplines', val: 'Program Design · UX' },

@@ -133,7 +133,7 @@ const industry = [
     id: 5,
     title: 'Tesla',
     desc: 'Industry case study — replace this description with the project outcome.',
-    tags: ['Product Design', 'UX'],
+    tags: ['Program Design', 'UX'],
     year: '2026',
     color: '#e8e4dc',
     slug: 'tesla',
