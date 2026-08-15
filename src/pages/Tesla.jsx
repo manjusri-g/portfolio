@@ -74,7 +74,7 @@ export default function Tesla() {
         { key: 'Role', val: 'Product Designer' },
         { key: 'Client', val: 'Tesla' },
         { key: 'Tools', val: 'Figma' },
-        { key: 'Disciplines', val: 'Product Design · UX' },
+        { key: 'Disciplines', val: 'Program Design · UX' },
       ]}
       background={(
         <>
