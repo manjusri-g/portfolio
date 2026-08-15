@@ -6,7 +6,7 @@
 
 /* ── Hero ── */
 .cs-hero {
-  padding: 72px 0 64px;
+  padding: 128px 0 64px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -20,18 +20,17 @@
 }
 
 .cs-hero__title {
-  font-size: 64px;
-  font-weight: 400;
-  letter-spacing: -0.03em;
+  font-size: 48px;
+  font-weight: 700;
   line-height: 1.1;
-  color: var(--text);
+  color: var(--accent);
   margin-bottom: 20px;
 }
 
 .cs-hero__tagline {
-  font-size: 20px;
-  color: var(--text-muted);
-  line-height: 1.6;
+  font-size: 24px;
+  color: var(--text);
+  line-height: 1.55;
   margin-bottom: 48px;
 }
 
@@ -68,15 +67,25 @@
 }
 
 .cs-section--tinted {
-  background: #f7f6f4;
+  background: var(--accent-soft);
 }
 
 .cs-section__heading {
-  font-size: 40px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  color: var(--text);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.2;
   margin-bottom: 48px;
+}
+
+.section-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  line-height: 1.4;
 }
 
 /* ── Two column layout ── */
@@ -98,9 +107,9 @@
 }
 
 .cs-two-col__body p {
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--text-muted);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text);
 }
 
 @media (max-width: 720px) {
@@ -154,7 +163,7 @@
 .cs-placeholder {
   width: 100%;
   aspect-ratio: var(--ph-aspect, 16/9);
-  background: var(--ph-color, #e8ece8);
+  background: var(--ph-color, var(--accent-soft));
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -162,6 +171,7 @@
   margin-bottom: 48px;
   position: relative;
   overflow: hidden;
+  border: 1px solid var(--border);
 }
 
 .cs-placeholder::after {
@@ -227,16 +237,16 @@
 }
 
 .cs-list li {
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.7;
-  color: var(--text-muted);
+  color: var(--text);
 }
 
 /* ── HMW ── */
 .cs-hmw {
   margin-top: 56px;
-  background: var(--accent-soft);
-  border: 1px solid #d4c8f4;
+  background: var(--bg);
+  border: 1px solid var(--accent);
   border-radius: 20px;
   padding: 48px 56px;
 }
@@ -282,7 +292,8 @@
 
 .cs-persona__name {
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 700;
+  color: var(--accent);
 }
 
 .cs-persona__role {
@@ -308,7 +319,8 @@
   gap: 20px;
 }
 
-.cs-screens .cs-placeholder {
+.cs-screens .cs-placeholder,
+.cs-screens .cs-figure {
   margin-bottom: 0;
 }
 
@@ -316,12 +328,59 @@
   .cs-screens { grid-template-columns: 1fr; }
 }
 
+/* ── Figures ── */
+.cs-figure {
+  margin: 0 0 48px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--accent-soft);
+  aspect-ratio: var(--fig-aspect, auto);
+}
+
+.cs-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.cs-figure--contain {
+  background: #1c1917;
+}
+
+.cs-figure--contain img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cs-figures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.cs-figures .cs-figure {
+  margin-bottom: 0;
+}
+
+@media (max-width: 720px) {
+  .cs-figures { grid-template-columns: 1fr; }
+}
+
+.cs-persona .cs-figure {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
 /* ── Usability result ── */
 .cs-result {
   display: flex;
   align-items: center;
   gap: 20px;
-  background: var(--accent-soft);
+  background: var(--bg);
+  border: 1px solid var(--accent);
   border-radius: 14px;
   padding: 20px 28px;
 }
@@ -347,27 +406,31 @@
   gap: 20px;
 }
 
+.cs-deliverables:has(.cs-deliverable:only-child) {
+  grid-template-columns: 1fr;
+  max-width: 480px;
+}
+
 .cs-deliverable {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--accent);
   border-radius: 16px;
   padding: 28px 32px;
-  background: #fff;
-  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  background: var(--accent-soft);
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .cs-deliverable:hover {
+  background: #e0c4f5;
   border-color: var(--accent);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
 }
 
 .cs-deliverable__title {
   font-size: 18px;
-  font-weight: 500;
-  color: var(--text);
+  font-weight: 700;
+  color: var(--accent);
 }
 
 .cs-deliverable__sub {
@@ -377,4 +440,91 @@
 
 @media (max-width: 640px) {
   .cs-deliverables { grid-template-columns: 1fr; }
+  .cs-hero { padding-top: 112px; }
+  .cs-hero__title { font-size: 36px; }
+  .cs-hero__tagline { font-size: 18px; }
+  .cs-section__heading { font-size: 24px; }
+  .cs-hmw { padding: 28px 24px; }
+  .cs-two-col__body p,
+  .cs-list li { font-size: 16px; }
+}
+
+/* ── Password gate ── */
+.gate {
+  padding: 160px 0 120px;
+  min-height: calc(100vh - 280px);
+}
+
+.gate__lede {
+  font-size: 24px;
+  line-height: 1.55;
+  color: var(--text);
+  max-width: 36em;
+  margin: 0 0 40px;
+}
+
+.gate__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 420px;
+}
+
+.gate__label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.gate__input {
+  width: 100%;
+  height: 52px;
+  padding: 0 18px;
+  border: 1.825px solid var(--accent);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.gate__input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.gate__error {
+  font-size: 16px;
+  color: var(--accent);
+}
+
+.gate__submit {
+  display: inline-flex;
+  align-items: center;
+  height: 37px;
+  padding: 0 18px;
+  border: 1.825px solid var(--accent);
+  border-radius: 29.2px;
+  background: var(--accent-soft);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.gate__submit:hover {
+  background: #e0c4f5;
+  color: #5a2d82;
+}
+
+@media (max-width: 640px) {
+  .gate { padding-top: 112px; }
+  .gate__lede { font-size: 18px; }
+  .gate__input { font-size: 18px; }
 }

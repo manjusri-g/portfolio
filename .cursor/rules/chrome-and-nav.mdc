@@ -1,0 +1,26 @@
+---
+description: Nav/footer contrast and routing. Prevents white-on-white chrome and dead About links.
+alwaysApply: true
+---
+
+# Chrome and navigation
+
+Use `src/components/Nav.jsx` and `src/components/Footer.jsx`. Wrap case studies in `CaseStudyPage`.
+
+## Contrast
+
+White type is **only** legal on photography.
+
+- Home hero: `<Nav tone="photo" />` while the floral hero is in view.
+- Everywhere else (scrolled home, case studies, 404): `<Nav tone="light" />`.
+- Footer always includes `footer-bg.png` and white type.
+
+Do not paste a new nav/footer into a page.
+
+## Routing
+
+- About is the home hero (`id="about"`). Hash scroll lives in `useHashScroll`. There is no separate About section.
+- Work is `#work`. Links use `to={{ pathname: '/', hash: 'work' }}`.
+- Site name is `Link to="/"`.
+- Resume always shows ↗ and `target="_blank"`.
+- Never show `View case study →`. The title (and thumbnail) go to the case study. `View website ↗` is a text link under the tags, not a pill, only when a live URL exists.

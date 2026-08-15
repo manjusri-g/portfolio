@@ -1,39 +1,11 @@
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import '../cs.css'
-
-function useScrollTop() {
-  useEffect(() => { window.scrollTo(0, 0) }, [])
-}
-
-function Placeholder({ label, aspect = '16/9', color = '#e8f0e8' }) {
-  return (
-    <div className="cs-placeholder" style={{ '--ph-color': color, '--ph-aspect': aspect }}>
-      <span className="cs-placeholder__label">{label}</span>
-    </div>
-  )
-}
+import CaseStudyPage from '../components/CaseStudyPage.jsx'
+import CsFigure from '../components/CsFigure.jsx'
 
 export default function FallingFruit() {
-  useScrollTop()
-
   return (
-    <div className="cs-page">
+    <CaseStudyPage title="Falling Fruit">
 
-      {/* ── Nav ── */}
-      <nav className="nav">
-        <div className="container nav__inner">
-          <Link to="/" className="nav__name">Manjusri Gobiraj</Link>
-          <ul className="nav__links">
-            <li><Link to="/#work">Work</Link></li>
-            <li><Link to="/#about">About</Link></li>
-            <li><a href="https://drive.google.com/file/d/1BTrrQapKdsm8nJaMuBZGNju-RYtL4irE/view?usp=sharing" target="_blank" rel="noreferrer">Resume</a></li>
-          </ul>
-        </div>
-      </nav>
-
-      {/* ── Hero ── */}
-      <header className="cs-hero">
+      <header id="main" className="cs-hero">
         <div className="container">
           <p className="cs-hero__label">Case Study</p>
           <h1 className="cs-hero__title">Falling Fruit</h1>
@@ -65,12 +37,10 @@ export default function FallingFruit() {
         </div>
       </header>
 
-      {/* ── Hero visual ── */}
       <div className="container">
-        <Placeholder label="Hero / Cover Visual" aspect="21/9" color="#d6e8d6" />
+        <CsFigure src="/ff-hero1.png" alt="Falling Fruit community page redesign" />
       </div>
 
-      {/* ── Impact ── */}
       <section className="cs-section">
         <div className="container">
           <div className="cs-impact">
@@ -90,7 +60,6 @@ export default function FallingFruit() {
         </div>
       </section>
 
-      {/* ── Background ── */}
       <section className="cs-section">
         <div className="container cs-two-col">
           <div className="cs-two-col__label">
@@ -111,7 +80,6 @@ export default function FallingFruit() {
         </div>
       </section>
 
-      {/* ── Task ── */}
       <section className="cs-section cs-section--tinted">
         <div className="container cs-two-col">
           <div className="cs-two-col__label">
@@ -126,7 +94,6 @@ export default function FallingFruit() {
         </div>
       </section>
 
-      {/* ── Research ── */}
       <section className="cs-section">
         <div className="container">
           <h2 className="cs-section__heading">Research</h2>
@@ -151,7 +118,7 @@ export default function FallingFruit() {
             </div>
           </div>
 
-          <Placeholder label="Competitive Analysis" color="#e0ead8" />
+          <CsFigure src="/ff-swot.png" alt="SWOT analysis of the existing Falling Fruit platform" />
 
           <div className="cs-two-col cs-two-col--gap">
             <div className="cs-two-col__label">
@@ -168,15 +135,15 @@ export default function FallingFruit() {
                 <li><strong>~28%</strong> said they were in a Falling Fruit community, revealing interest is higher than actual participation.</li>
               </ul>
               <blockquote className="cs-quote">
-                "Creating a platform where foragers could interact more could be a potentially beneficial addition."
+                &ldquo;Creating a platform where foragers could interact more could be a potentially beneficial addition.&rdquo;
               </blockquote>
               <blockquote className="cs-quote">
-                "If Falling Fruit ever incorporated a social aspect, I would be interested in joining other local groups."
+                &ldquo;If Falling Fruit ever incorporated a social aspect, I would be interested in joining other local groups.&rdquo;
               </blockquote>
             </div>
           </div>
 
-          <Placeholder label="Survey Data Visualization" color="#e0ead8" />
+          <CsFigure src="/ff-survey.png" alt="Survey results: how respondents got involved in Falling Fruit" />
 
           <div className="cs-two-col cs-two-col--gap">
             <div className="cs-two-col__label">
@@ -190,7 +157,7 @@ export default function FallingFruit() {
                 overwhelming the small volunteer team.
               </p>
               <blockquote className="cs-quote cs-quote--highlight">
-                "Fruit is designed to be beautiful and call your attention so you can eat it and spread its life."
+                &ldquo;Fruit is designed to be beautiful and call your attention so you can eat it and spread its life.&rdquo;
                 <cite>— Falling Fruit Interviewee</cite>
               </blockquote>
             </div>
@@ -198,7 +165,6 @@ export default function FallingFruit() {
         </div>
       </section>
 
-      {/* ── Defining the Problem ── */}
       <section className="cs-section cs-section--tinted">
         <div className="container">
           <h2 className="cs-section__heading">Defining the Problem</h2>
@@ -212,23 +178,23 @@ export default function FallingFruit() {
           </div>
           <div className="cs-personas">
             <div className="cs-persona">
-              <Placeholder label="Nick Smith — Persona" aspect="4/3" color="#dde8f0" />
+              <CsFigure src="/ff-persona-nick.png" alt="Persona sketch of Nick Smith" aspect="4/3" contain />
               <div className="cs-persona__body">
                 <h3 className="cs-persona__name">Nick Smith, 30</h3>
                 <p className="cs-persona__role">Businessman · New York City</p>
                 <p><strong>Goal:</strong> Find a calming, sustainable hobby outside of work — discover edible plants near his Manhattan apartment.</p>
                 <p><strong>Frustration:</strong> No community aspect; unsure where to start; worried about legality and safety.</p>
-                <blockquote className="cs-quote">"No community aspect, I'd love to see an ability to communicate or ask for help IDing."</blockquote>
+                <blockquote className="cs-quote">&ldquo;No community aspect, I&apos;d love to see an ability to communicate or ask for help IDing.&rdquo;</blockquote>
               </div>
             </div>
             <div className="cs-persona">
-              <Placeholder label="Jessica Nguyen — Persona" aspect="4/3" color="#dde8f0" />
+              <CsFigure src="/ff-persona-jessica.png" alt="Persona sketch of Jessica Nguyen" aspect="4/3" contain />
               <div className="cs-persona__body">
                 <h3 className="cs-persona__name">Jessica Nguyen, 30</h3>
                 <p className="cs-persona__role">Middle School Teacher · Plano, TX</p>
                 <p><strong>Goal:</strong> Reconnect with a local foraging community after moving from San Diego.</p>
                 <p><strong>Frustration:</strong> No groups, events, or messaging in Falling Fruit; social presence feels incomplete.</p>
-                <blockquote className="cs-quote">"Being able to organize foraging outages/events could be huge for the platform."</blockquote>
+                <blockquote className="cs-quote">&ldquo;Being able to organize foraging outages/events could be huge for the platform.&rdquo;</blockquote>
               </div>
             </div>
           </div>
@@ -241,7 +207,6 @@ export default function FallingFruit() {
         </div>
       </section>
 
-      {/* ── Design ── */}
       <section className="cs-section">
         <div className="container">
           <h2 className="cs-section__heading">Design</h2>
@@ -258,7 +223,10 @@ export default function FallingFruit() {
               </p>
             </div>
           </div>
-          <Placeholder label="Wireframes" color="#e0ead8" />
+          <div className="cs-figures">
+            <CsFigure src="/ff-wireframe-main.png" alt="Wireframe of the Falling Fruit community landing page" />
+            <CsFigure src="/ff-wireframe-activity.png" alt="Wireframe of the localized activity feed" />
+          </div>
 
           <div className="cs-two-col cs-two-col--gap">
             <div className="cs-two-col__label">
@@ -268,7 +236,7 @@ export default function FallingFruit() {
               <p>A <strong>Community Page</strong> on the Falling Fruit website — the hub connecting all engagement features.</p>
               <ul className="cs-list">
                 <li><strong>Community Page Landing</strong> — entry point to forums, events, updates, and educational resources.</li>
-                <li><strong>Localized Activity Feed</strong> — tailored to the user's area, highlighting nearby plant activity and posts from local foragers. <em>(Feature I led design for)</em></li>
+                <li><strong>Localized Activity Feed</strong> — tailored to the user&apos;s area, highlighting nearby plant activity and posts from local foragers. <em>(Feature I led design for)</em></li>
                 <li><strong>User Story Highlights</strong> — a showcase of community-led experiences to celebrate contributions. <em>(Feature I led design for)</em></li>
                 <li><strong>Ask Your Community (Forum)</strong> — a space to ask questions, share knowledge, and crowdsource plant identification.</li>
                 <li><strong>Group Outing Organization</strong> — plan, join, or discover local foraging outings directly in the platform.</li>
@@ -277,15 +245,15 @@ export default function FallingFruit() {
           </div>
 
           <div className="cs-screens">
-            <Placeholder label="Community Page Landing" aspect="16/10" color="#d6e8d6" />
-            <Placeholder label="Localized Activity Feed" aspect="16/10" color="#d6e8d6" />
-            <Placeholder label="Ask Your Community Forum" aspect="16/10" color="#d6e8d6" />
-            <Placeholder label="Group Outing Organization" aspect="16/10" color="#d6e8d6" />
+            <CsFigure src="/ff-screen-community.gif" alt="Community page landing animation" />
+            <CsFigure src="/ff-screen-activity.gif" alt="Localized activity feed animation" />
+            <CsFigure src="/ff-screen-forum.gif" alt="Ask Your Community forum animation" />
+            <CsFigure src="/ff-screen-events.gif" alt="Group outing organization animation" />
           </div>
+          <CsFigure src="/ff-screen-highlights.gif" alt="User story highlights animation" />
         </div>
       </section>
 
-      {/* ── Usability Testing ── */}
       <section className="cs-section cs-section--tinted">
         <div className="container cs-two-col">
           <div className="cs-two-col__label">
@@ -302,13 +270,12 @@ export default function FallingFruit() {
             </div>
             <p>
               Testing confirmed the structure and flow worked well, while surfacing improvements in interaction states,
-              labeling clarity (e.g., replacing "I'm going!" with "Join"), and navigation patterns.
+              labeling clarity (e.g., replacing &ldquo;I&apos;m going!&rdquo; with &ldquo;Join&rdquo;), and navigation patterns.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ── Final Deliverables ── */}
       <section className="cs-section">
         <div className="container">
           <h2 className="cs-section__heading">Final Deliverables</h2>
@@ -329,13 +296,12 @@ export default function FallingFruit() {
               className="cs-deliverable"
             >
               <span className="cs-deliverable__title">Final Slides ↗</span>
-              <span className="cs-deliverable__sub">Research process, design decisions & solution</span>
+              <span className="cs-deliverable__sub">Research process, design decisions &amp; solution</span>
             </a>
           </div>
         </div>
       </section>
 
-      {/* ── Reflection ── */}
       <section className="cs-section cs-section--tinted">
         <div className="container cs-two-col">
           <div className="cs-two-col__label">
@@ -357,29 +323,6 @@ export default function FallingFruit() {
         </div>
       </section>
 
-      {/* ── Footer ── */}
-      <footer className="footer">
-        <div className="container footer__inner">
-          <div className="footer__left">
-            <p className="footer__tagline">Thank you for stopping by <em>~</em></p>
-            <div className="footer__links">
-              <div className="footer__col">
-                <span className="footer__col-title">Navigation</span>
-                <Link to="/#work">Work</Link>
-                <Link to="/#about">About</Link>
-                <a href="https://drive.google.com/file/d/1BTrrQapKdsm8nJaMuBZGNju-RYtL4irE/view?usp=sharing" target="_blank" rel="noreferrer">Resume</a>
-              </div>
-              <div className="footer__col">
-                <span className="footer__col-title">Contact</span>
-                <a href="https://www.linkedin.com/in/manjusri-gobiraj/" target="_blank" rel="noreferrer">LinkedIn</a>
-                <a href="mailto:manjusri.gobiraj@gmail.com">Email</a>
-              </div>
-            </div>
-            <p className="footer__copy">© 2026 Manjusri Gobiraj</p>
-          </div>
-        </div>
-      </footer>
-
-    </div>
+    </CaseStudyPage>
   )
 }

@@ -1,0 +1,32 @@
+---
+description: Visual identity, tokens, and type for this portfolio. Apply on every UI change.
+alwaysApply: true
+---
+
+# Design system
+
+Full spec: `.llm/design-system.md`. Home is the source of truth. Do not invent a second look for case studies.
+
+**Brand:** whimsical, nature-forward, purple on white, floral photography, generous space.
+
+## Tokens (`src/index.css`) — do not add new hex
+
+- `--accent: #9350b2` headings, pills, CTAs
+- `--text: #1c1917` / `--text-muted: #44403c` on light
+- `--bg: #ffffff` / `--border: #e8e3dc`
+- White type **only** on floral photos (`hero-bg.png`, `footer-bg.png`)
+
+## Type
+
+- DM Sans for all UI. Caveat **only** on the hero word “drawn”.
+- Section + project titles: **700**, accent purple (48px / 32px on home).
+- Do not copy case-study type (64px/400 titles, 15px body) — that drift is a bug.
+- Style `.section-label` if you touch case studies: small uppercase, accent, letter-spacing. The class exists with **no CSS**.
+
+## Layout to preserve
+
+- Hero: text left, `manu-portfolio-pic.png` right (overlay is in the file).
+- Cards: thumb left (natural screenshot ratio, ~15px radius) | title, desc, pills. “View website ↗” is a text link under the pills, never a tag.
+- Home work: two sections — “Industry” then “Non Profit Organizations” — same heading + card style. Tesla is password-gated.
+- Footer on home: floral photo, tagline left, Connect + Navigation right.
+- Pills: 37px, accent border, `--accent-soft` fill.

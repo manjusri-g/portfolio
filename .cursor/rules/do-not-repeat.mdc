@@ -1,0 +1,25 @@
+---
+description: Known defects. Do not copy these patterns; do not regress the audit fixes.
+alwaysApply: true
+---
+
+# Do not repeat
+
+Home + shared `Nav`/`Footer` are the template. Case studies must use `CaseStudyPage`, not pasted chrome.
+
+## Never clone
+
+1. White nav/footer on a white page. Use `Nav tone="light"` on case studies; `tone="photo"` only over the floral hero.
+2. Dead About. About must go to the home hero (`id="about"`), not a missing hash and not a separate About section.
+3. CTA text on an unlinked card (WCASL has no destination — no CTA).
+4. `Placeholder` when `public/` already has the asset (Falling Fruit images are wired).
+5. A second palette or type scale that makes case studies look like another site.
+6. New nav/footer markup per page — use `src/components/Nav.jsx` and `Footer.jsx`.
+7. Extra Google-font loads (`index.html` only).
+8. `href="#"` for the site name.
+
+Plastic Beach still has no images in `public/`. Placeholders there are missing content, not a look.
+
+## Motion
+
+Keep `prefers-reduced-motion` and `:focus-visible` on the star cursor.

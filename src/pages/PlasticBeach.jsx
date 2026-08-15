@@ -1,39 +1,19 @@
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import '../cs.css'
+import CaseStudyPage from '../components/CaseStudyPage.jsx'
+import CsFigure from '../components/CsFigure.jsx'
 
-function useScrollTop() {
-  useEffect(() => { window.scrollTo(0, 0) }, [])
-}
-
-function Placeholder({ label, aspect = '16/9', color = '#d0e8e0' }) {
+function Placeholder({ label, aspect = '16/9' }) {
   return (
-    <div className="cs-placeholder" style={{ '--ph-color': color, '--ph-aspect': aspect }}>
+    <div className="cs-placeholder" style={{ '--ph-aspect': aspect }}>
       <span className="cs-placeholder__label">{label}</span>
     </div>
   )
 }
 
 export default function PlasticBeach() {
-  useScrollTop()
-
   return (
-    <div className="cs-page">
+    <CaseStudyPage title="Plastic Beach">
 
-      {/* ── Nav ── */}
-      <nav className="nav">
-        <div className="container nav__inner">
-          <Link to="/" className="nav__name">Manjusri Gobiraj</Link>
-          <ul className="nav__links">
-            <li><Link to="/#work">Work</Link></li>
-            <li><Link to="/#about">About</Link></li>
-            <li><a href="https://drive.google.com/file/d/1BTrrQapKdsm8nJaMuBZGNju-RYtL4irE/view?usp=sharing" target="_blank" rel="noreferrer">Resume</a></li>
-          </ul>
-        </div>
-      </nav>
-
-      {/* ── Hero ── */}
-      <header className="cs-hero">
+      <header id="main" className="cs-hero">
         <div className="container">
           <p className="cs-hero__label">Case Study</p>
           <h1 className="cs-hero__title">Plastic Beach</h1>
@@ -65,9 +45,8 @@ export default function PlasticBeach() {
         </div>
       </header>
 
-      {/* ── Hero visual ── */}
       <div className="container">
-        <Placeholder label="Hero / Cover Visual" aspect="21/9" color="#c8e0d4" />
+        <CsFigure src="/plastic-beach-cover.png" alt="Plastic Beach homepage" />
       </div>
 
       {/* ── Impact ── */}
@@ -434,29 +413,6 @@ export default function PlasticBeach() {
         </div>
       </section>
 
-      {/* ── Footer ── */}
-      <footer className="footer">
-        <div className="container footer__inner">
-          <div className="footer__left">
-            <p className="footer__tagline">Thank you for stopping by <em>~</em></p>
-            <div className="footer__links">
-              <div className="footer__col">
-                <span className="footer__col-title">Navigation</span>
-                <Link to="/#work">Work</Link>
-                <Link to="/#about">About</Link>
-                <a href="https://drive.google.com/file/d/1BTrrQapKdsm8nJaMuBZGNju-RYtL4irE/view?usp=sharing" target="_blank" rel="noreferrer">Resume</a>
-              </div>
-              <div className="footer__col">
-                <span className="footer__col-title">Contact</span>
-                <a href="https://www.linkedin.com/in/manjusri-gobiraj/" target="_blank" rel="noreferrer">LinkedIn</a>
-                <a href="mailto:manjusri.gobiraj@gmail.com">Email</a>
-              </div>
-            </div>
-            <p className="footer__copy">© 2026 Manjusri Gobiraj</p>
-          </div>
-        </div>
-      </footer>
-
-    </div>
+    </CaseStudyPage>
   )
 }

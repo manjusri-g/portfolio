@@ -1,11 +1,21 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import './App.css'
+import './cs.css'
+import { useHashScroll, useHomeTitle, usePrefersReducedMotion } from './hooks.js'
+import Nav from './components/Nav.jsx'
+import Footer from './components/Footer.jsx'
 import FallingFruit from './pages/FallingFruit.jsx'
 import PlasticBeach from './pages/PlasticBeach.jsx'
+import Wcasl from './pages/Wcasl.jsx'
+import AgentUx from './pages/AgentUx.jsx'
+import Tesla from './pages/Tesla.jsx'
+import CityOfSanDiego from './pages/CityOfSanDiego.jsx'
+import NotFound from './pages/NotFound.jsx'
 
-function useStarTrail() {
+function useStarTrail(enabled) {
   useEffect(() => {
+    if (!enabled) return
     let lastX = 0
     let lastY = 0
 
@@ -35,7 +45,7 @@ function useStarTrail() {
 
     window.addEventListener('mousemove', onMove)
     return () => window.removeEventListener('mousemove', onMove)
-  }, [])
+  }, [enabled])
 }
 
 function StarCursor() {
@@ -45,14 +55,14 @@ function StarCursor() {
   useEffect(() => {
     const onMove = e => setPos({ x: e.clientX, y: e.clientY })
     const onDown = () => setActive(true)
-    const onUp   = () => setActive(false)
+    const onUp = () => setActive(false)
     window.addEventListener('mousemove', onMove)
     window.addEventListener('mousedown', onDown)
-    window.addEventListener('mouseup',   onUp)
+    window.addEventListener('mouseup', onUp)
     return () => {
       window.removeEventListener('mousemove', onMove)
       window.removeEventListener('mousedown', onDown)
-      window.removeEventListener('mouseup',   onUp)
+      window.removeEventListener('mouseup', onUp)
     }
   }, [])
 
@@ -71,99 +81,7 @@ function StarCursor() {
   )
 }
 
-function HeroStars() {
-  const canvasRef = useRef(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-
-    const NUM_STARS = 24
-    const ATTRACT_RADIUS = 160
-    const ATTRACT_STRENGTH = 0.055
-    const RETURN_STRENGTH = 0.035
-
-    let W = 0, H = 0
-
-    const makeStars = () =>
-      Array.from({ length: NUM_STARS }, () => {
-        const rx = Math.random() * W
-        const ry = Math.random() * H
-        return { rx, ry, cx: rx, cy: ry, size: Math.random() * 4 + 2, alpha: Math.random() * 0.45 + 0.35 }
-      })
-
-    let stars = []
-
-    const resize = () => {
-      W = canvas.offsetWidth
-      H = canvas.offsetHeight
-      canvas.width = W
-      canvas.height = H
-      stars = makeStars()
-    }
-    resize()
-    window.addEventListener('resize', resize)
-
-    let mx = -9999, my = -9999
-
-    const onMouseMove = (e) => {
-      const rect = canvas.getBoundingClientRect()
-      mx = e.clientX - rect.left
-      my = e.clientY - rect.top
-    }
-    const onMouseLeave = () => { mx = -9999; my = -9999 }
-
-    window.addEventListener('mousemove', onMouseMove)
-    const section = canvas.parentElement
-    section?.addEventListener('mouseleave', onMouseLeave)
-
-    const drawStar = (x, y, r) => {
-      ctx.beginPath()
-      ctx.moveTo(x, y - r)
-      ctx.quadraticCurveTo(x + r * 0.22, y - r * 0.22, x + r, y)
-      ctx.quadraticCurveTo(x + r * 0.22, y + r * 0.22, x, y + r)
-      ctx.quadraticCurveTo(x - r * 0.22, y + r * 0.22, x - r, y)
-      ctx.quadraticCurveTo(x - r * 0.22, y - r * 0.22, x, y - r)
-      ctx.closePath()
-      ctx.fill()
-    }
-
-    let animId
-    const animate = () => {
-      ctx.clearRect(0, 0, W, H)
-      for (const s of stars) {
-        const dx = mx - s.cx
-        const dy = my - s.cy
-        const dist = Math.hypot(dx, dy)
-        if (dist < ATTRACT_RADIUS) {
-          s.cx += dx * ATTRACT_STRENGTH
-          s.cy += dy * ATTRACT_STRENGTH
-        } else {
-          s.cx += (s.rx - s.cx) * RETURN_STRENGTH
-          s.cy += (s.ry - s.cy) * RETURN_STRENGTH
-        }
-        ctx.globalAlpha = s.alpha
-        ctx.fillStyle = '#ffffff'
-        drawStar(s.cx, s.cy, s.size)
-      }
-      ctx.globalAlpha = 1
-      animId = requestAnimationFrame(animate)
-    }
-    animate()
-
-    return () => {
-      cancelAnimationFrame(animId)
-      window.removeEventListener('resize', resize)
-      window.removeEventListener('mousemove', onMouseMove)
-      section?.removeEventListener('mouseleave', onMouseLeave)
-    }
-  }, [])
-
-  return <canvas ref={canvasRef} className="hero__stars" />
-}
-
-const projects = [
+const nonprofits = [
   {
     id: 1,
     title: 'Plastic Beach',
@@ -172,6 +90,8 @@ const projects = [
     year: '2025',
     color: '#d6e8e0',
     slug: 'plastic-beach',
+    image: '/plastic-beach-cover.png',
+    website: 'https://www.plastic-beach.com/',
   },
   {
     id: 2,
@@ -190,6 +110,9 @@ const projects = [
     tags: ['Web Design', 'Content Strategy'],
     year: '2025',
     color: '#d4e0f0',
+    slug: 'wcasl',
+    image: '/wacsl-cover.png',
+    website: 'https://www.wcasl.org/',
   },
   {
     id: 4,
@@ -199,29 +122,59 @@ const projects = [
     year: '2026',
     color: '#c2d8f0',
     award: '1st Place · Wildcard Track · DiamondHacks 2026',
-    href: 'https://www.agentux.dev/',
+    slug: 'agent-ux',
     image: '/agentux.png',
+    website: 'https://www.agentux.dev/',
+  },
+]
+
+const industry = [
+  {
+    id: 5,
+    title: 'Tesla',
+    desc: 'Industry case study — replace this description with the project outcome.',
+    tags: ['Product Design', 'UX'],
+    year: '2026',
+    color: '#e8e4dc',
+    slug: 'tesla',
+    image: '/tesla-cover.png',
+  },
+  {
+    id: 6,
+    title: 'The City of San Diego',
+    desc: 'User experience work for civic services in San Diego — replace this description with the project outcome.',
+    tags: ['UX Design', 'Civic Tech'],
+    year: '2026',
+    color: '#d6e0f0',
+    slug: 'city-of-san-diego',
+    image: '/city-cover.png',
   },
 ]
 
 function WorkCard({ project }) {
-  const thumb = project.video ? (
-    <div className="card__thumb" style={{ '--card-color': project.color }}>
-      <video src={project.video} autoPlay muted loop playsInline className="card__media" />
-    </div>
-  ) : project.image ? (
-    <div className="card__thumb" style={{ '--card-color': project.color }}>
-      <img src={project.image} alt={project.title} className="card__media card__media--contain" />
-    </div>
-  ) : (
-    <div className="card__thumb" style={{ '--card-color': project.color }} />
-  )
+  const to = `/${project.slug}`
 
-  const inner = (
+  const media = project.video ? (
+    <video src={project.video} autoPlay muted loop playsInline className="card__media" />
+  ) : project.image ? (
+    <img
+      src={project.image}
+      alt=""
+      className="card__media"
+    />
+  ) : null
+
+  return (
     <article className="card">
-      {thumb}
+      <Link to={to} className="card__thumb-link" aria-hidden="true" tabIndex={-1}>
+        <div className="card__thumb" style={{ '--card-color': project.color }}>
+          {media}
+        </div>
+      </Link>
       <div className="card__body">
-        <h3 className="card__title">{project.title}</h3>
+        <h3 className="card__title">
+          <Link to={to}>{project.title}</Link>
+        </h3>
         <p className="card__desc">{project.desc}</p>
         {project.award && (
           <div className="card__award">
@@ -234,136 +187,113 @@ function WorkCard({ project }) {
             <span key={t} className="card__tag-pill">{t}</span>
           ))}
         </div>
-        <span className="card__cta">{project.href ? 'View website →' : 'View case study →'}</span>
+        {project.website && (
+          <a
+            href={project.website}
+            target="_blank"
+            rel="noreferrer"
+            className="card__website"
+          >
+            View website <span className="card__website-arrow">↗</span>
+          </a>
+        )}
       </div>
     </article>
   )
-
-  if (project.slug) return <Link to={`/${project.slug}`} className="card-link">{inner}</Link>
-  if (project.href) return <a href={project.href} target="_blank" rel="noreferrer" className="card-link">{inner}</a>
-  return inner
 }
 
 function Home() {
-  const [scrolled, setScrolled] = useState(false)
+  useHomeTitle()
+  useHashScroll()
+  const [overPhoto, setOverPhoto] = useState(() => {
+    if (typeof window === 'undefined') return true
+    const hash = window.location.hash
+    if (hash && hash !== '#about') return false
+    return window.scrollY < 48
+  })
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60)
+    if (!window.location.hash) window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
+    const onScroll = () => setOverPhoto(window.scrollY < 48)
+    onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
     <div className="page">
+      <Nav tone={overPhoto ? 'photo' : 'light'} />
 
-      {/* ── Nav ── */}
-      <nav className={`nav${scrolled ? ' nav--scrolled' : ''}`}>
-        <div className="container nav__inner">
-          <a href="#" className="nav__name">Manjusri Gobiraj</a>
-          <ul className="nav__links">
-            <li><a href="#work">Work</a></li>
-            <li><a href="#about">About</a></li>
-            <li>
-              <a
-                href="https://drive.google.com/file/d/1BTrrQapKdsm8nJaMuBZGNju-RYtL4irE/view?usp=sharing"
-                target="_blank"
-                rel="noreferrer"
-                className="nav__resume"
-              >
-                Resume <span className="nav__arrow">↗</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-      {/* ── Hero ── */}
-      <section className="hero">
+      <section className="hero" id="about">
         <img src="/hero-bg.png" alt="" className="hero__bg-img" />
         <div className="container hero__inner">
           <div className="hero__text">
             <h1 className="hero__title">Hello, I&apos;m Manjusri!</h1>
             <p className="hero__sub">
-              A Product Designer <em>drawn</em> to whimsical skies, quiet cafes, and getting the details right.
+              A Product Designer <em className="hero__drawn">drawn</em> to whimsical skies, quiet cafes, and getting the details right.
             </p>
             <div className="hero__roles">
               <p>4th Year, Cognitive Science @ UC San Diego</p>
               <p>User Experience Intern @ The City of San Diego</p>
             </div>
           </div>
-          <div className="hero__decoration">
-            <img src="/hero-vector.svg" alt="" />
+          <div className="hero__photo">
+            <img src="/manu-portfolio-pic.png" alt="Manjusri Gobiraj" />
           </div>
         </div>
       </section>
 
-      {/* ── Work ── */}
       <section id="work" className="work">
         <div className="container">
-          <h2 className="work__heading">Selected Projects</h2>
+          <h2 className="work__heading">Industry</h2>
           <div className="work__list">
-            {projects.map(p => <WorkCard key={p.id} project={p} />)}
+            {industry.map(p => <WorkCard key={p.id} project={p} />)}
           </div>
         </div>
       </section>
 
-      {/* ── Footer ── */}
-      <footer className="footer">
-        <img src="/footer-bg.png" alt="" className="footer__bg-img" />
-        <div className="container footer__inner">
-          <div className="footer__left">
-            <p className="footer__tagline">Thanks for stopping by!</p>
-            <p className="footer__copy">made with love © 2026 Manjusri Gobiraj</p>
-          </div>
-          <div className="footer__right">
-            <div className="footer__col">
-              <span className="footer__col-title">Connect</span>
-              <a
-                href="mailto:manjusri.gobiraj@gmail.com"
-                className="footer__col-link"
-              >
-                Email <span className="link-arrow">↗</span>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/manjusri-gobiraj/"
-                target="_blank"
-                rel="noreferrer"
-                className="footer__col-link"
-              >
-                LinkedIn <span className="link-arrow">↗</span>
-              </a>
-            </div>
-            <div className="footer__col">
-              <span className="footer__col-title">Navigation</span>
-              <a href="#work" className="footer__col-link">Work</a>
-              <a href="#about" className="footer__col-link">About</a>
-              <a
-                href="https://drive.google.com/file/d/1BTrrQapKdsm8nJaMuBZGNju-RYtL4irE/view?usp=sharing"
-                target="_blank"
-                rel="noreferrer"
-                className="footer__col-link"
-              >
-                Resume <span className="link-arrow">↗</span>
-              </a>
-            </div>
+      <section id="nonprofits" className="work work--follow">
+        <div className="container">
+          <h2 className="work__heading">Non Profit Organizations</h2>
+          <div className="work__list">
+            {nonprofits.map(p => <WorkCard key={p.id} project={p} />)}
           </div>
         </div>
-      </footer>
+      </section>
 
+      <Footer />
     </div>
   )
 }
 
 export default function App() {
-  useStarTrail()
+  const reducedMotion = usePrefersReducedMotion()
+  useStarTrail(!reducedMotion)
+
+  useEffect(() => {
+    if (reducedMotion) {
+      document.documentElement.classList.remove('has-star-cursor')
+      return
+    }
+    document.documentElement.classList.add('has-star-cursor')
+    return () => document.documentElement.classList.remove('has-star-cursor')
+  }, [reducedMotion])
 
   return (
     <>
-      <StarCursor />
+      {!reducedMotion && <StarCursor />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/falling-fruit" element={<FallingFruit />} />
         <Route path="/plastic-beach" element={<PlasticBeach />} />
+        <Route path="/wcasl" element={<Wcasl />} />
+        <Route path="/agent-ux" element={<AgentUx />} />
+        <Route path="/tesla" element={<Tesla />} />
+        <Route path="/city-of-san-diego" element={<CityOfSanDiego />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   )
