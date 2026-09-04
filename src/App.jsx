@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import './App.css'
 import './cs.css'
+import { FLAGS } from './site.js'
 import { useHashScroll, useHomeTitle, usePrefersReducedMotion } from './hooks.js'
 import Nav from './components/Nav.jsx'
 import Footer from './components/Footer.jsx'
@@ -81,7 +82,27 @@ function StarCursor() {
   )
 }
 
-const nonprofits = [
+const projects = [
+  {
+    id: 6,
+    title: 'The City of San Diego',
+    desc: 'User experience work for civic services in San Diego — replace this description with the project outcome.',
+    tags: ['UX Design', 'Civic Tech'],
+    year: '2026',
+    color: '#d6e0f0',
+    slug: 'city-of-san-diego',
+    image: '/city-cover.png',
+  },
+  {
+    id: 5,
+    title: 'Tesla',
+    desc: 'Industry case study — replace this description with the project outcome.',
+    tags: ['Program Design', 'UX'],
+    year: '2026',
+    color: '#e8e4dc',
+    slug: 'tesla',
+    image: '/tesla-cover.png',
+  },
   {
     id: 1,
     title: 'Plastic Beach',
@@ -125,29 +146,6 @@ const nonprofits = [
     slug: 'agent-ux',
     image: '/agentux.png',
     website: 'https://www.agentux.dev/',
-  },
-]
-
-const industry = [
-  {
-    id: 5,
-    title: 'Tesla',
-    desc: 'Industry case study — replace this description with the project outcome.',
-    tags: ['Program Design', 'UX'],
-    year: '2026',
-    color: '#e8e4dc',
-    slug: 'tesla',
-    image: '/tesla-cover.png',
-  },
-  {
-    id: 6,
-    title: 'The City of San Diego',
-    desc: 'User experience work for civic services in San Diego — replace this description with the project outcome.',
-    tags: ['UX Design', 'Civic Tech'],
-    year: '2026',
-    color: '#d6e0f0',
-    slug: 'city-of-san-diego',
-    image: '/city-cover.png',
   },
 ]
 
@@ -248,18 +246,11 @@ function Home() {
 
       <section id="work" className="work">
         <div className="container">
-          <h2 className="work__heading">Industry</h2>
+          <h2 className="work__heading">Work</h2>
           <div className="work__list">
-            {industry.map(p => <WorkCard key={p.id} project={p} />)}
-          </div>
-        </div>
-      </section>
-
-      <section id="nonprofits" className="work work--follow">
-        <div className="container">
-          <h2 className="work__heading">Non Profit Organizations</h2>
-          <div className="work__list">
-            {nonprofits.map(p => <WorkCard key={p.id} project={p} />)}
+            {projects
+              .filter(p => p.slug !== 'tesla' || FLAGS.tesla)
+              .map(p => <WorkCard key={p.id} project={p} />)}
           </div>
         </div>
       </section>
@@ -291,7 +282,7 @@ export default function App() {
         <Route path="/plastic-beach" element={<PlasticBeach />} />
         <Route path="/wcasl" element={<Wcasl />} />
         <Route path="/agent-ux" element={<AgentUx />} />
-        <Route path="/tesla" element={<Tesla />} />
+        {FLAGS.tesla && <Route path="/tesla" element={<Tesla />} />}
         <Route path="/city-of-san-diego" element={<CityOfSanDiego />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

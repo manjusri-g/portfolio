@@ -237,7 +237,7 @@ html.has-star-cursor * {
 
 /* ── Work ── */
 .work {
-  padding: 88px 0 48px;
+  padding: 88px 0 120px;
   background: #ffffff;
   scroll-margin-top: 72px;
 }
@@ -254,12 +254,6 @@ html.has-star-cursor * {
   display: flex;
   flex-direction: column;
   gap: 72px;
-}
-
-.work--follow {
-  padding: 56px 0 120px;
-  border-top: 1px solid var(--border);
-  scroll-margin-top: 72px;
 }
 
 /* ── Card ── */
@@ -394,8 +388,7 @@ html.has-star-cursor * {
   .card__title { font-size: 24px; }
   .card__desc { font-size: 18px; }
   .work__heading { font-size: 36px; }
-  .work { padding: 64px 0 40px; }
-  .work--follow { padding: 40px 0 88px; }
+  .work { padding: 64px 0 88px; }
 }
 
 /* ── 404 ── */

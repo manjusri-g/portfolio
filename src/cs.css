@@ -272,6 +272,8 @@
 }
 
 .cs-persona {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--border);
   border-radius: 20px;
   overflow: hidden;
@@ -284,9 +286,10 @@
 }
 
 .cs-persona__body {
+  flex: 1;
   padding: 28px 32px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto auto 1fr 1fr auto;
   gap: 12px;
 }
 
@@ -317,6 +320,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  margin-bottom: 48px;
 }
 
 .cs-screens .cs-placeholder,
@@ -324,8 +328,18 @@
   margin-bottom: 0;
 }
 
+.cs-screens--3 {
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+}
+
+.cs-screens--3 .cs-figure {
+  background: #fff;
+}
+
 @media (max-width: 720px) {
-  .cs-screens { grid-template-columns: 1fr; }
+  .cs-screens,
+  .cs-screens--3 { grid-template-columns: 1fr; }
 }
 
 /* ── Figures ── */
@@ -372,6 +386,25 @@
 .cs-persona .cs-figure {
   margin-bottom: 0;
   border-radius: 0;
+  flex-shrink: 0;
+}
+
+.cs-persona .cs-figure:not(.cs-figure--contain) {
+  background: #fff;
+}
+
+.cs-persona .cs-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cs-persona .cs-figure:not(.cs-figure--contain) img {
+  object-position: left center;
+}
+
+.cs-persona__body .cs-quote {
+  margin: 0;
 }
 
 /* ── Usability result ── */

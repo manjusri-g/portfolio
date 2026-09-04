@@ -5,3 +5,7 @@ export const SITE = {
   linkedin: 'https://www.linkedin.com/in/manjusri-gobiraj/',
   resume: 'https://drive.google.com/file/d/1BTrrQapKdsm8nJaMuBZGNju-RYtL4irE/view?usp=sharing',
 }
+
+export const FLAGS = {
+  tesla: false,
+}

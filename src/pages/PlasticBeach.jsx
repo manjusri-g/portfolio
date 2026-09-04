@@ -1,14 +1,6 @@
 import CaseStudyPage from '../components/CaseStudyPage.jsx'
 import CsFigure from '../components/CsFigure.jsx'
 
-function Placeholder({ label, aspect = '16/9' }) {
-  return (
-    <div className="cs-placeholder" style={{ '--ph-aspect': aspect }}>
-      <span className="cs-placeholder__label">{label}</span>
-    </div>
-  )
-}
-
 export default function PlasticBeach() {
   return (
     <CaseStudyPage title="Plastic Beach">
@@ -46,7 +38,12 @@ export default function PlasticBeach() {
       </header>
 
       <div className="container">
-        <CsFigure src="/plastic-beach-cover.png" alt="Plastic Beach homepage" />
+        <div className="cs-screens">
+          <CsFigure src="/pb-title-home.png" alt="Plastic Beach homepage hero and impact stats" />
+          <CsFigure src="/pb-title-about.png" alt="Plastic Beach mission, vision, and founder" />
+          <CsFigure src="/pb-title-faq.png" alt="Plastic Beach recycling FAQs and locations" />
+          <CsFigure src="/pb-title-guidelines.png" alt="Plastic Beach how-to-recycle guidelines" />
+        </div>
       </div>
 
       {/* ── Impact ── */}
@@ -125,7 +122,7 @@ export default function PlasticBeach() {
             </div>
           </div>
 
-          <Placeholder label="Competitive Analysis" color="#c8e0d4" />
+          <CsFigure src="/pb-competitive.png" alt="Competitive analysis of recycling guidelines from NY DEC, UCSD, and CSWD" />
 
           <div className="cs-two-col cs-two-col--gap">
             <div className="cs-two-col__label">
@@ -146,7 +143,7 @@ export default function PlasticBeach() {
             </div>
           </div>
 
-          <Placeholder label="Survey Data Visualization" color="#c8e0d4" />
+          <CsFigure src="/pb-survey.png" alt="Existing Plastic Beach recycling placard evaluated in user surveys" />
 
           <div className="cs-two-col cs-two-col--gap">
             <div className="cs-two-col__label">
@@ -163,6 +160,21 @@ export default function PlasticBeach() {
               </ul>
             </div>
           </div>
+
+          <div className="cs-two-col cs-two-col--gap">
+            <div className="cs-two-col__label">
+              <span className="section-label">Affinity Diagram</span>
+            </div>
+            <div className="cs-two-col__body">
+              <p>
+                Survey and interview notes were clustered into an affinity diagram. People liked the pictures, color,
+                and how informative the existing placard was — but readability, word density, and a smoother yes/no
+                flow kept coming up. The through-line: <strong>simplify, keep it clean, and make sorting obvious at a glance.</strong>
+              </p>
+            </div>
+          </div>
+
+          <CsFigure src="/pb-affinity.png" alt="Affinity diagram grouping feedback on what people liked and what to improve" />
         </div>
       </section>
 
@@ -180,7 +192,7 @@ export default function PlasticBeach() {
           </div>
           <div className="cs-personas">
             <div className="cs-persona">
-              <Placeholder label="John Martinez — Persona" aspect="4/3" color="#b8d8cc" />
+              <CsFigure src="/pb-persona-john.png" alt="Sketch of small business owner John Martinez" aspect="940 / 380" />
               <div className="cs-persona__body">
                 <h3 className="cs-persona__name">John Martinez</h3>
                 <p className="cs-persona__role">Small Business Owner</p>
@@ -190,7 +202,7 @@ export default function PlasticBeach() {
               </div>
             </div>
             <div className="cs-persona">
-              <Placeholder label="Taylor Jones — Persona" aspect="4/3" color="#b8d8cc" />
+              <CsFigure src="/pb-persona-taylor.png" alt="Sketch of parent Taylor Jones" aspect="940 / 380" />
               <div className="cs-persona__body">
                 <h3 className="cs-persona__name">Taylor Jones</h3>
                 <p className="cs-persona__role">Parent</p>
@@ -216,17 +228,17 @@ export default function PlasticBeach() {
 
           <div className="cs-two-col cs-two-col--gap">
             <div className="cs-two-col__label">
-              <span className="section-label">Wireframes</span>
+              <span className="section-label">Style Guide</span>
             </div>
             <div className="cs-two-col__body">
               <p>
-                I translated early wireframes into a mid-fidelity design by prioritizing clear visual hierarchy, adding
-                recognizable icons for each plastic type, and incorporating concise rules and contact information to
-                make the placard both informative and easy to scan.
+                Before high-fidelity work, we locked a shared system — navy and green as primaries, mint and light
+                blue as supports, plus check and caution icons — so the placard and website would feel like one
+                organization instead of two separate artifacts.
               </p>
             </div>
           </div>
-          <Placeholder label="Wireframes → Mid-Fidelity" aspect="4/3" color="#c8e0d4" />
+          <CsFigure src="/pb-style-guide.png" alt="Plastic Beach style guide covering color, logo, icons, and type" />
 
           <div className="cs-two-col cs-two-col--gap">
             <div className="cs-two-col__label">
@@ -239,7 +251,7 @@ export default function PlasticBeach() {
               </p>
             </div>
           </div>
-          <Placeholder label="Custom Procreate Illustrations" aspect="16/9" color="#c8e0d4" />
+          <CsFigure src="/pb-graphics.png" alt="Custom Procreate illustrations of trash bags, case wrap, bubble wrap, and dry cleaning bags" />
 
           <div className="cs-two-col cs-two-col--gap">
             <div className="cs-two-col__label">
@@ -256,7 +268,36 @@ export default function PlasticBeach() {
               </ul>
             </div>
           </div>
-          <Placeholder label="High-Fidelity Placard" aspect="1/1" color="#c8e0d4" />
+          <CsFigure src="/pb-placard-hifi.png" alt="High-fidelity Plastic Beach recycling placard" />
+
+          <div className="cs-two-col cs-two-col--gap">
+            <div className="cs-two-col__label">
+              <span className="section-label">Iteration</span>
+            </div>
+            <div className="cs-two-col__body">
+              <p>
+                We marked up the high-fidelity draft to tighten hierarchy — stronger checkmarks on the recycle bar,
+                a louder clean-and-dry warning, and clearer connection between the logo and the stretch-test rule.
+              </p>
+            </div>
+          </div>
+          <CsFigure src="/pb-placard-iteration.png" alt="Annotated iteration of the Plastic Beach placard with hierarchy callouts" />
+
+          <div className="cs-two-col cs-two-col--gap">
+            <div className="cs-two-col__label">
+              <span className="section-label">Before &amp; After</span>
+            </div>
+            <div className="cs-two-col__body">
+              <p>
+                The original placard asked people to read a long include/exclude list. The redesign leads with one
+                stretch-test rule, icon-first examples, and a single clean-and-dry condition — built to work at bin distance.
+              </p>
+            </div>
+          </div>
+          <div className="cs-figures">
+            <CsFigure src="/pb-survey.png" alt="Original Plastic Beach recycling placard" />
+            <CsFigure src="/pb-placard-after.png" alt="Redesigned Plastic Beach recycling placard" />
+          </div>
 
           <div className="cs-two-col cs-two-col--gap">
             <div className="cs-two-col__label">
@@ -295,24 +336,12 @@ export default function PlasticBeach() {
               </p>
             </div>
           </div>
+          <CsFigure src="/pb-audit-1.png" alt="Website design audit of Plastic Beach enrollment, process, and drop-off pages" />
+          <CsFigure src="/pb-audit-2.png" alt="Website design audit of the Plastic Beach about page and homepage" />
 
           <div className="cs-two-col cs-two-col--gap">
             <div className="cs-two-col__label">
-              <span className="section-label">Wireframes</span>
-            </div>
-            <div className="cs-two-col__body">
-              <p>
-                We wireframed three new pages — an <strong>FAQ page</strong>, an <strong>Advocacy page</strong>, and a
-                <strong> Recycling Guidelines page</strong> — designed to improve user flow and complement the placard
-                with richer information.
-              </p>
-            </div>
-          </div>
-          <Placeholder label="Website Wireframes" color="#c8e0d4" />
-
-          <div className="cs-two-col cs-two-col--gap">
-            <div className="cs-two-col__label">
-              <span className="section-label">High-Fidelity</span>
+              <span className="section-label">Design Implementation</span>
             </div>
             <div className="cs-two-col__body">
               <p>
@@ -327,11 +356,10 @@ export default function PlasticBeach() {
               </p>
             </div>
           </div>
-          <div className="cs-screens">
-            <Placeholder label="Recycling Guidelines Page" aspect="16/10" color="#c8e0d4" />
-            <Placeholder label="Advocacy Page" aspect="16/10" color="#c8e0d4" />
-            <Placeholder label="Homepage Redesign" aspect="16/10" color="#c8e0d4" />
-            <Placeholder label="FAQ Page" aspect="16/10" color="#c8e0d4" />
+          <div className="cs-screens cs-screens--3">
+            <CsFigure src="/pb-impl-guidelines.png" alt="Implemented Plastic Beach recycling guidelines page" />
+            <CsFigure src="/pb-impl-faq.png" alt="Implemented Plastic Beach FAQ page" />
+            <CsFigure src="/pb-impl-advocacy.png" alt="Implemented Plastic Beach advocacy page" />
           </div>
         </div>
       </section>
@@ -352,7 +380,7 @@ export default function PlasticBeach() {
               </p>
             </div>
           </div>
-          <Placeholder label="Final Placard" aspect="1/1" color="#c8e0d4" />
+          <CsFigure src="/pb-final-placard.png" alt="Final Plastic Beach recycling placard" />
 
           <div className="cs-two-col cs-two-col--gap">
             <div className="cs-two-col__label">
@@ -366,7 +394,7 @@ export default function PlasticBeach() {
               </p>
             </div>
           </div>
-          <Placeholder label="Final Website" color="#c8e0d4" />
+          <CsFigure src="/pb-final-home.png" alt="Final Plastic Beach homepage" />
 
           <div className="cs-deliverables">
             <a
